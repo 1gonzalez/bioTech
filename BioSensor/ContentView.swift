@@ -9,9 +9,6 @@ import SwiftUI
 import CoreMotion
 
 
-let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
-let lightGrey = Color(red: 0.8667, green: 0.8667, blue: 0.8667)
-
 struct ContentView: View {
     
     let largeConfig = UIImage.SymbolConfiguration(pointSize: 140, weight: .bold, scale: .large)
@@ -23,7 +20,7 @@ struct ContentView: View {
         )
         ]
     
-    @State private var tabSelection = 1
+    @State private var tabSelection = 2
     @State private var buttonPressed = 0
     @State private var currentDate = Date.now
     @State private var textInput = ""
