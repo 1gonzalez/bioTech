@@ -4,7 +4,6 @@
 //
 //  Created by Shi Xiang Lim on 1/21/23.
 //
-
 import SwiftUI
 import CoreMotion
 
@@ -56,6 +55,7 @@ struct Reading: Identifiable {
     let interval:String
     let id = UUID()
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
