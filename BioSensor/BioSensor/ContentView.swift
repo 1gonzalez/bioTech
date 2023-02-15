@@ -4,7 +4,6 @@
 //
 //  Created by Shi Xiang Lim on 1/21/23.
 //
-
 import SwiftUI
 import CoreMotion
 
@@ -75,8 +74,8 @@ struct Reading: Identifiable {
 
 struct MainMenu: View {
     @Binding var tabSelection: Int
-    var motion = CMMotionManager()
-    var yawDeg:Double = 0
+    let motion = CMMotionManager()
+    
     var body: some View {
         ZStack{
             /*
@@ -96,8 +95,10 @@ struct MainMenu: View {
                 
                 Button(action: {
                     print("Pressed!")
-                    Measure()
-                    print(yawDeg)
+                    motion.startGyroUpdates()
+                    let roll = motion.gyroData
+                    motion.stopGyroUpdates()
+                    print(roll as Any)
                 }){
                     Text("Start Measurement")
                         .font(.largeTitle)
@@ -123,22 +124,7 @@ struct MainMenu: View {
         }
         
     }
-    
-    func Measure() {
-        if motion.isDeviceMotionAvailable {
-            motion.deviceMotionUpdateInterval = 0.0000001
-            motion.startDeviceMotionUpdates(
-                using: CMAttitudeReferenceFrame.xArbitraryZVertical,
-                to: OperationQueue.current!) {(data, error) in
-                    if let trueData = data{
-                        self.yawDeg = trueData.attitude.yaw
-                    }
-                }
-        }
-    }
 }
-
-
 
 struct Measurement: View {
     @Binding var currentDate:Date
